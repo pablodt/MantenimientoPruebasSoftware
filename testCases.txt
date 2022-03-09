@@ -1,0 +1,7 @@
+PABLO DURAN TRUJILLANO
+
+Casos de prueba contemplados:
+	- Compruebo que se lanza excepción si el valor introducido es negativo.
+	- Compruebo que devuelve 0 si el valor introducido es 0.
+	- Compruebo que devuelve 1 si el valor introducido es 1.
+	- Compruebo para diferentes valores que se cumple que el resultado esperado es igual al obtenido.
