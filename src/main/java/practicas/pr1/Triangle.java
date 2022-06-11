@@ -21,7 +21,7 @@ public class Triangle {
   public TriangleType getType(double side1, double side2, double side3) {
     TriangleType result;
 
-    // IMPLEMENTATION 1
+    /*// IMPLEMENTATION 1
     if (((side1 == 0) || (side2 == 0)) || (side3 == 0)) {
       throw new RuntimeException("At least one side has length 0");
     }
@@ -50,11 +50,13 @@ public class Triangle {
       } else {
         result = TriangleType.ISOSCELES;
       }
-    }
+    }*/
 
-    /*
     // IMPLEMENTATION 2
-    var sides = new ArrayList<>(List.of(side1, side2, side3));
+    List<Double> sides = new ArrayList<>();
+    sides.add(side1);
+    sides.add(side2);
+    sides.add(side3);
     Collections.sort(sides);
 
     if (sides.stream().anyMatch(i -> i == 0.0)) {
@@ -69,13 +71,19 @@ public class Triangle {
       throw new RuntimeException("The side lengths do not correspond to a valid triangle") ;
     }
 
-    var distinctValues = sides.stream().distinct().count() ;
-    result = switch ((int) distinctValues) {
-      case 3 -> TriangleType.SCALENE;
-      case 1 -> TriangleType.EQUILATERAL;
-      default -> TriangleType.ISOSCELES;
-    };
-*/
+    int distinctValues = (int) sides.stream().distinct().count();
+
+    switch(distinctValues) {
+      case 1:
+        result = TriangleType.EQUILATERAL;
+        break;
+      case 3:
+        result = TriangleType.SCALENE;
+        break;
+      default:
+        result = TriangleType.ISOSCELES;
+    }
+
     return result;
   }
 }
