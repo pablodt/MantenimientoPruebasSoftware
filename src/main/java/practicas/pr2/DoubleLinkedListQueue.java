@@ -1,7 +1,5 @@
 package practicas.pr2;
 
-import java.util.LinkedList;
-
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
@@ -15,38 +13,79 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T> {
     @Override
     public void append(DequeNode<T> node) {
         if (size() == 0) {
-
+            first = node;
+            last = node;
+        } else {
+            if (first == last) {
+                last = node;
+                last.setPrevious(first);
+                first.setNext(last);
+            } else {
+                last.setNext(node);
+                node.setPrevious(last);
+                last = node;
+            }
         }
     }
 
     @Override
     public void appendLeft(DequeNode<T> node) {
-
+        if (size() == 0) {
+            first = node;
+            last = node;
+        } else {
+            if (first == last) {
+                first.setNext(last);
+                first.setPrevious(node);
+                node.setNext(first);
+                first = node;
+            } else {
+                first.setPrevious(node);
+                node.setNext(node);
+                first = node;
+            }
+        }
     }
 
     @Override
     public void deleteFirst() {
-
+        if (size() != 0) {
+            if (first == last) {
+                first = null;
+                last = null;
+            } else {
+                first = first.getNext();
+                first.setPrevious(null);
+            }
+        }
     }
 
     @Override
     public void deleteLast() {
-
+        if (size() != 0) {
+            if (first == last) {
+                first = null;
+                last = null;
+            } else {
+                last = last.getPrevious();
+                last.setNext(null);
+            }
+        }
     }
 
     @Override
     public DequeNode<T> peekFirst() {
-        return null;
+        return first;
     }
 
     @Override
     public DequeNode<T> peekLast() {
-        return null;
+        return last;
     }
 
     @Override
     public int size() {
-        if (first.isLastNode()) {
+        if (first == null) {
             return 0;
         }
         return doSize(first);

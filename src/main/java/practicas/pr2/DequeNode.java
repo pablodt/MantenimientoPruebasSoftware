@@ -41,4 +41,17 @@ public class DequeNode<T> {
     public boolean isNotATerminalNode() {
         return (!isFirstNode() && !isLastNode()) ;
     }
+
+    // Setters
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+    public void setNext(DequeNode<T> next) {
+        this.next = next;
+    }
+
+    public void setPrevious(DequeNode<T> previous) {
+        this.previous = previous;
+    }
 }
